@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'td_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,85 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Assignment 1 portfolio',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
-      home: const PortfolioPage(),
+      home: const LoginScreen(),
+    );
+  }
+}
+
+class GridTest extends StatelessWidget {
+  const GridTest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const title = 'Grid List';
+
+    return MaterialApp(
+      title: title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(title)),
+        //add scrollbar
+        body: Scrollbar(
+          thumbVisibility: true,
+          child: GridView.count(
+            crossAxisCount: 4,
+            children: List.generate(1000, (index) {
+              final isEvenRow = (index ~/ 4) % 2 == 0;
+              final isEvenColumn = (index % 4) % 2 == 0;
+              final isEven = isEvenRow ? isEvenColumn : !isEvenColumn;
+              final color = isEven ? Colors.amber : Colors.brown;
+
+              return Container(
+                color: color,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Icon(Icons.star, size: 40, color: Colors.black),
+                      // const SizedBox(height: 8),
+                      // Text(
+                      //   'Item $index',
+                      //   style: Theme.of(context).textTheme.headlineSmall,
+                      // ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class InClassPage extends StatelessWidget {
+  const InClassPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.favorite,
+              color: Colors.pink,
+              size: 44,
+              semanticLabel: 'Text to announce in accessibility modes',
+            ),
+            const SizedBox(width: 30),
+            Icon(Icons.audiotrack, color: Colors.green, size: 40),
+            const SizedBox(width: 30),
+            Icon(Icons.beach_access, color: Colors.blue, size: 46),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -62,7 +138,7 @@ class PortfolioPage extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.black,
                     image: DecorationImage(
-                      image: AssetImage('assets/profile.jpg'),
+                      image: AssetImage('assets/'),
                       fit: BoxFit.cover,
                     ),
                     border: Border.all(color: Colors.grey.shade200, width: 5),
